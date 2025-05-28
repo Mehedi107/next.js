@@ -1,12 +1,14 @@
-import { DUMMY_NEWS } from '@/dummy-news';
 import Link from 'next/link';
 
-export default function NewsPage() {
+export default async function NewsPage() {
+  const response = await fetch('http://localhost:8080/news');
+  const news = await response.json();
+
   return (
     <>
       <h1>New page</h1>
       <ul className="news-list">
-        {DUMMY_NEWS.map(newsItem => (
+        {news.map(newsItem => (
           <li key={newsItem.id}>
             <Link href={`/news/${newsItem.slug}`}>
               <img
