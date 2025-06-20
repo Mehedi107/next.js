@@ -2,11 +2,12 @@ import Link from 'next/link';
 import { currentUser } from '@clerk/nextjs/server';
 import DesktopNavbar from './desktop-navbar';
 import MobileNavbar from './mobile-navbar';
-// import { syncUser } from "@/actions/user.action";
+import { syncUser } from '@/actions/user.action';
+import { PrismaClient } from '@/generated/prisma';
 
 async function Navbar() {
   const user = await currentUser();
-  // if (user) await syncUser();
+  if (user) await syncUser();
 
   return (
     <nav className="sticky top-0 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
