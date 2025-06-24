@@ -1,6 +1,6 @@
 import { currentUser } from '@clerk/nextjs/server';
 import UnAuthSidebar from './UnAuthSidebar';
-import { getUserFromDB } from '@/actions/user.action';
+import { getUserByClerkId } from '@/actions/user.action';
 import Link from 'next/link';
 import { Card, CardContent } from './ui/card';
 import { Avatar, AvatarImage } from './ui/avatar';
@@ -12,7 +12,7 @@ export default async function Sidebar() {
 
   if (!authUser) return <UnAuthSidebar />;
 
-  const user = await getUserFromDB(authUser.id);
+  const user = await getUserByClerkId(authUser.id);
 
   if (!user) return null;
 

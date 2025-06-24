@@ -1,13 +1,29 @@
-import { ModeToggle } from '@/components/theme-toggler';
-import { Button } from '@/components/ui/button';
-import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  SignUpButton,
-  UserButton,
-} from '@clerk/nextjs';
+import { getDbUserId } from '@/actions/user.action';
+import CreatePost from '@/components/CreatePost';
+import { currentUser } from '@clerk/nextjs/server';
 
-export default function Home() {
-  return <div className="p-20">home page content</div>;
+export default async function Home() {
+  const user = await currentUser();
+  // const posts = await getPosts();
+  const dbUserId = await getDbUserId();
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-10 gap-6">
+      <div className="lg:col-span-6">
+        {user ? <CreatePost /> : null}
+
+        <div className="space-y-6">
+          posts
+          {/* {posts.map((post) => (
+            <PostCard key={post.id} post={post} dbUserId={dbUserId} />
+          ))} */}
+        </div>
+      </div>
+
+      <div className="hidden lg:block lg:col-span-4 sticky top-20">
+        who to follow
+        {/* <WhoToFollow /> */}
+      </div>
+    </div>
+  );
 }
