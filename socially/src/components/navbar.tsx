@@ -3,10 +3,10 @@ import { currentUser } from '@clerk/nextjs/server';
 import DesktopNavbar from './desktop-navbar';
 import MobileNavbar from './mobile-navbar';
 import { syncUser } from '@/actions/user.action';
-// import { PrismaClient } from '@/generated/prisma';
 
 async function Navbar() {
   const user = await currentUser();
+
   if (user) await syncUser();
 
   return (

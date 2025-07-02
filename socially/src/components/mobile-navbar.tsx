@@ -1,5 +1,4 @@
 'use client';
-
 import {
   BellIcon,
   HomeIcon,
@@ -79,7 +78,7 @@ function MobileNavbar() {
                   className="flex items-center gap-3 justify-start"
                   asChild
                 >
-                  <Link href="/profile">
+                  <Link href={`/profile`}>
                     <UserIcon className="w-4 h-4" />
                     Profile
                   </Link>
