@@ -30,7 +30,6 @@ function ImageUpload({ endpoint, onChange, value }: ImageUploadProps) {
     <UploadButton
       endpoint={endpoint}
       onClientUploadComplete={res => {
-        console.log('Files: ', res);
         onChange(res?.[0].url);
       }}
       onUploadError={(error: Error) => {

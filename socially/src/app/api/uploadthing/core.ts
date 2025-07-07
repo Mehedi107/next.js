@@ -23,7 +23,6 @@ export const ourFileRouter = {
     })
     .onUploadComplete(async ({ metadata, file }) => {
       try {
-        console.log('on upload complete', file);
         return { fileUrl: file.url };
       } catch (error) {
         console.error('Error in onUploadComplete:', error);
