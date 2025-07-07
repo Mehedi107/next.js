@@ -9,8 +9,6 @@ export default async function SuggestedToFollow() {
 
   if (users.length === 0) return null;
 
-  console.log(users[0].image);
-
   return (
     <Card>
       <CardHeader>

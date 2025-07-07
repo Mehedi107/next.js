@@ -7,8 +7,8 @@ import { Avatar, AvatarImage } from './ui/avatar';
 import { Textarea } from './ui/textarea';
 import { ImageIcon, Loader2Icon, SendIcon } from 'lucide-react';
 import { Button } from './ui/button';
-import toast from 'react-hot-toast';
 import { createPost } from '@/actions/post.action';
+import toast from 'react-hot-toast';
 import ImageUpload from './ImageUpload';
 
 function CreatePost() {
@@ -22,6 +22,7 @@ function CreatePost() {
     if (!content.trim() && !imageUrl) return;
 
     setIsPosting(true);
+
     try {
       const result = await createPost(content, imageUrl);
       if (result?.success) {
@@ -50,7 +51,7 @@ function CreatePost() {
             </Avatar>
             <Textarea
               placeholder="What's on your mind?"
-              className="min-h-[100px] resize-none border-none focus-visible:ring-0 text-base"
+              className="min-h-[100px] resize-none border-none focus-visible:ring-0 p-3 text-base"
               value={content}
               onChange={e => setContent(e.target.value)}
               disabled={isPosting}
@@ -74,7 +75,7 @@ function CreatePost() {
             <div className="flex space-x-2">
               <Button
                 type="button"
-                variant="ghost"
+                variant="outline"
                 size="sm"
                 className="text-muted-foreground hover:text-primary"
                 onClick={() => setShowImageUpload(!showImageUpload)}
