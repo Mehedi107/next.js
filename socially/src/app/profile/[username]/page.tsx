@@ -6,13 +6,14 @@ import {
 } from '@/actions/profile.action';
 import { notFound } from 'next/navigation';
 import ProfilePageClient from './ProfilePageClient';
+import { Metadata } from 'next';
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { username: string };
-}) {
-  const user = await getProfileByUsername(params.username);
+export async function generateMetadata(props: {
+  params: Promise<{ username: string }>;
+}): Promise<Metadata | undefined> {
+  const { username } = await props.params;
+  const user = await getProfileByUsername(username);
+
   if (!user) return;
 
   return {
@@ -21,8 +22,11 @@ export async function generateMetadata({
   };
 }
 
-async function ProfilePageServer({ params }: { params: { username: string } }) {
-  const user = await getProfileByUsername(params.username);
+async function ProfilePageServer(props: {
+  params: Promise<{ username: string }>;
+}) {
+  const { username } = await props.params;
+  const user = await getProfileByUsername(username);
 
   if (!user) notFound();
 
@@ -41,4 +45,5 @@ async function ProfilePageServer({ params }: { params: { username: string } }) {
     />
   );
 }
+
 export default ProfilePageServer;
