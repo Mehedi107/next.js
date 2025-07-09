@@ -5,6 +5,7 @@ export default async function MessagesPage() {
     // cache: 'no-cache',
     next: {
       revalidate: 5,
+      tags: ['msg'],
     },
   });
   const messages = await response.json();
